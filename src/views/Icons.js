@@ -19,8 +19,7 @@
 import React from "react";
 import { useState } from "react";
 import i3 from '../assets/img/blood.gif'
-// import { Card, Container, Row, Col, Form, Button } from "react-bootstrap";
-import { Card, Container,Row,Col,Form,Button } from "reactstrap";
+import { Card, Container, Row, Col, Form, Button } from "react-bootstrap";
 
 
 function Icons() {
