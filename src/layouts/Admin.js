@@ -22,7 +22,7 @@ import PerfectScrollbar from "perfect-scrollbar";
 import { Route, Routes, useLocation } from "react-router-dom";
 
 import DemoNavbar from "components/Navbars/DemoNavbar.js";
-import Footer from "components/Footer/Footer.js";
+// import Footer from "components/Footer/Footer.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
 import FixedPlugin from "components/FixedPlugin/FixedPlugin.js";
 
@@ -79,7 +79,7 @@ function Dashboard(props) {
             );
           })}
         </Routes>
-        <Footer fluid />
+        {/* <Footer fluid /> */}
       </div>
       <FixedPlugin
         bgColor={backgroundColor}

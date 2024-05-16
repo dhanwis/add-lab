@@ -101,6 +101,7 @@ function Header(props) {
           ? "navbar-absolute fixed-top"
           : "navbar-absolute fixed-top " +
             (color === "transparent" ? "navbar-transparent " : "")
+            
       }
     >
       <Container fluid>

@@ -19,7 +19,7 @@
 import React from "react";
 // react plugin used to create charts
 import { Line, Pie } from "react-chartjs-2";
-// reactstrap components
+import Footer from "../components/Footer/Footer";
 import {
   Card,
   CardHeader,
@@ -224,6 +224,7 @@ function Dashboard() {
             </Card>
           </Col>
         </Row>
+        <Footer/>
       </div>
     </>
   );

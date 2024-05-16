@@ -19,11 +19,15 @@
 import Dashboard from "views/Dashboard.js";
 import Notifications from "views/Notifications.js";
 import Icons from "views/Icons.js";
-import Typography from "views/Typography.js";
+// import Typography from "views/Typography.js";
 import TableList from "views/Tables.js";
 import Maps from "views/Map.js";
 import UserPage from "views/User.js";
-import UpgradeToPro from "views/Upgrade.js";
+import DoctorList from "./views/Doctorl";
+import Booking from "./views/Booking";
+import Report from "./views/Report";
+import Feedback from "./views/Feedback";
+// import UpgradeToPro from "views/Upgrade.js";
 
 var routes = [
   {
@@ -34,53 +38,74 @@ var routes = [
     layout: "/admin",
   },
   {
-    path: "/icons",
-    name: "Icons",
+    path: "/packages",
+    name: "Add Packages",
     icon: "nc-icon nc-diamond",
     component: <Icons />,
     layout: "/admin",
   },
   {
-    path: "/maps",
-    name: "Maps",
+    path: "/test",
+    name: "Add Test",
     icon: "nc-icon nc-pin-3",
     component: <Maps />,
     layout: "/admin",
   },
   {
-    path: "/notifications",
-    name: "Notifications",
+    path: "/doctor",
+    name: "Add Doctor",
     icon: "nc-icon nc-bell-55",
     component: <Notifications />,
     layout: "/admin",
   },
   {
-    path: "/user-page",
-    name: "User Profile",
+    path: "/package-list",
+    name: "Package List",
     icon: "nc-icon nc-single-02",
     component: <UserPage />,
     layout: "/admin",
   },
   {
-    path: "/tables",
-    name: "Table List",
+    path: "/test-list",
+    name: "Test List",
     icon: "nc-icon nc-tile-56",
     component: <TableList />,
     layout: "/admin",
   },
   {
-    path: "/typography",
-    name: "Typography",
+    path: "/doctor-list",
+    name: "Doctor List",
     icon: "nc-icon nc-caps-small",
-    component: <Typography />,
+    component: <DoctorList />,
+    layout: "/admin",
+  },
+  // {
+  //   pro: true,
+  //   path: "/upgrade",
+  //   name: "Upgrade to PRO",
+  //   icon: "nc-icon nc-spaceship",
+  //   component: <UpgradeToPro />,
+  //   layout: "/admin",
+  // },
+  {
+    path: "/bookings",
+    name: "Bookings",
+    icon: "nc-icon nc-caps-small",
+    component: <Booking />,
     layout: "/admin",
   },
   {
-    pro: true,
-    path: "/upgrade",
-    name: "Upgrade to PRO",
-    icon: "nc-icon nc-spaceship",
-    component: <UpgradeToPro />,
+    path: "/testreport",
+    name: "Test Report",
+    icon: "nc-icon nc-caps-small",
+    component: <Report />,
+    layout: "/admin",
+  },
+  {
+    path: "/feedback",
+    name: "Feedbacks",
+    icon: "nc-icon nc-caps-small",
+    component: <Feedback />,
     layout: "/admin",
   },
 ];

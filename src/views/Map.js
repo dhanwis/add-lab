@@ -17,203 +17,151 @@
 
 */
 import React from "react";
-// reactstrap components
-import { Card, CardHeader, CardBody, Row, Col } from "reactstrap";
+import { useState } from "react";
+import { Card, Container, Row, Col, Form, InputGroup, Button } from "react-bootstrap";
 
-const MapWrapper = () => {
-  const mapRef = React.useRef(null);
-  React.useEffect(() => {
-    let google = window.google;
-    let map = mapRef.current;
-    let lat = "40.748817";
-    let lng = "-73.985428";
-    const myLatlng = new google.maps.LatLng(lat, lng);
-    const mapOptions = {
-      zoom: 13,
-      center: myLatlng,
-      scrollwheel: false,
-      zoomControl: true,
-      styles: [
-        {
-          featureType: "water",
-          stylers: [
-            {
-              saturation: 43,
-            },
-            {
-              lightness: -11,
-            },
-            {
-              hue: "#0088ff",
-            },
-          ],
-        },
-        {
-          featureType: "road",
-          elementType: "geometry.fill",
-          stylers: [
-            {
-              hue: "#ff0000",
-            },
-            {
-              saturation: -100,
-            },
-            {
-              lightness: 99,
-            },
-          ],
-        },
-        {
-          featureType: "road",
-          elementType: "geometry.stroke",
-          stylers: [
-            {
-              color: "#808080",
-            },
-            {
-              lightness: 54,
-            },
-          ],
-        },
-        {
-          featureType: "landscape.man_made",
-          elementType: "geometry.fill",
-          stylers: [
-            {
-              color: "#ece2d9",
-            },
-          ],
-        },
-        {
-          featureType: "poi.park",
-          elementType: "geometry.fill",
-          stylers: [
-            {
-              color: "#ccdca1",
-            },
-          ],
-        },
-        {
-          featureType: "road",
-          elementType: "labels.text.fill",
-          stylers: [
-            {
-              color: "#767676",
-            },
-          ],
-        },
-        {
-          featureType: "road",
-          elementType: "labels.text.stroke",
-          stylers: [
-            {
-              color: "#ffffff",
-            },
-          ],
-        },
-        {
-          featureType: "poi",
-          stylers: [
-            {
-              visibility: "off",
-            },
-          ],
-        },
-        {
-          featureType: "landscape.natural",
-          elementType: "geometry.fill",
-          stylers: [
-            {
-              visibility: "on",
-            },
-            {
-              color: "#b8cb93",
-            },
-          ],
-        },
-        {
-          featureType: "poi.park",
-          stylers: [
-            {
-              visibility: "on",
-            },
-          ],
-        },
-        {
-          featureType: "poi.sports_complex",
-          stylers: [
-            {
-              visibility: "on",
-            },
-          ],
-        },
-        {
-          featureType: "poi.medical",
-          stylers: [
-            {
-              visibility: "on",
-            },
-          ],
-        },
-        {
-          featureType: "poi.business",
-          stylers: [
-            {
-              visibility: "simplified",
-            },
-          ],
-        },
-      ],
-    };
-
-    map = new google.maps.Map(map, mapOptions);
-
-    const marker = new google.maps.Marker({
-      position: myLatlng,
-      map: map,
-      animation: google.maps.Animation.DROP,
-      title: "Paper Dashboard React!",
-    });
-
-    const contentString =
-      '<div class="info-window-content"><h2>Paper Dashboard React</h2>' +
-      "<p>A free Admin for React, Reactstrap, and React Hooks.</p></div>";
-
-    const infowindow = new google.maps.InfoWindow({
-      content: contentString,
-    });
-
-    google.maps.event.addListener(marker, "click", function () {
-      infowindow.open(map, marker);
-    });
-  });
-  return (
-    <>
-      <div style={{ height: `100%` }} ref={mapRef}></div>
-    </>
-  );
-};
 
 function Map() {
+  const [validated, setValidated] = useState(false);
+
+  const handleSubmit = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    setValidated(true);
+  };
   return (
     <>
-      <div className="content">
-        <Row>
-          <Col md="12">
-            <Card>
-              <CardHeader>Google Maps</CardHeader>
-              <CardBody>
-                <div
-                  id="map"
-                  className="map"
-                  style={{ position: "relative", overflow: "hidden" }}
-                >
-                  <MapWrapper />
-                </div>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
+      <div className="content" style={{marginTop:"100px",backgroundColor:'white'}}>
+        <Container className="text-left">
+          <Row>
+            <Col>
+              {/* <img src={}/> */}
+            </Col>
+            <Col md={{ span: 7, offset: 0 }}>
+              <Card style={{backgroundColor:'white',boxShadow:'none'}}>
+                <Card.Body className="labs">
+                  <h2 className="text-center mt-4" style={{ fontFamily: "Helvetica",fontWeight:'bold' }}>ADD TEST</h2>
+                  <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                    <Row className="mb-3">
+                      <Form.Group style={{marginTop:'10px'}} as={Col} controlId="validationCustom01">
+                        <Form.Label style={{ color: "black", fontSize: "15px",fontWeight:'bold',marginLeft:"5px"}}>TEST NAME</Form.Label>
+                      </Form.Group>
+                      <Col md="8">
+                        <Form.Control
+                          style={{ height: "38px",borderColor: "black" }}
+                          required
+                          type="text"
+                          placeholder="Enter name"
+                        />
+                      </Col>
+                    </Row>
+
+                    <Row className="mb-3">
+                      <Form.Group style={{marginTop:'10px'}} as={Col} controlId="validationCustom01">
+                        <Form.Label style={{ color: "black", fontSize: "15px",fontWeight:'bold',marginLeft:"5px" }}>LAB NAME</Form.Label>
+                      </Form.Group>
+                      <Col md="8">
+                        <Form.Control
+                          style={{ height: "38px",borderColor: "black" }}
+                          required
+                          type="text"
+                          placeholder="Enter name"
+                        />
+                      </Col>
+                    </Row>
+
+                    <Row className="mb-3">
+                      <Form.Group style={{ marginTop:'10px' }} as={Col} controlId="validationCustom03">
+                        <Form.Label style={{ color: "black", fontSize: "15px", fontWeight: 'bold', marginLeft: "5px" }}>DEPARTMENT</Form.Label>
+                      </Form.Group>
+                      <Col md="8">
+                        <Form.Select
+                          style={{ height: "38px" ,width:"320px",borderColor: "black",borderRadius:"3px"}}
+                          required
+                        >
+                          <option value="">Select a category</option>
+                          <option value="option1">Endocrinology</option>
+                          <option value="option2">Hematology</option>
+                          <option value="option3">Immunology</option>
+                          <option value="option3">Pathology</option>
+                          <option value="option3">Serology</option>
+                          <option value="option3">Microbiology</option>
+                          <option value="option3">Urinalysis</option>
+                          <option value="option3">Cardiology</option>
+                        </Form.Select>
+                        <Form.Control.Feedback type="invalid">
+                          Please select a category.
+                        </Form.Control.Feedback>
+                      </Col>
+                    </Row>
+
+                    <Row className="mb-3">
+                      <Form.Group style={{ marginTop:'10px' }} as={Col} controlId="validationCustom03">
+                        <Form.Label style={{ color: "black", fontSize: "15px", fontWeight: 'bold', marginLeft: "5px" }}>PACKAGE CATEGORY</Form.Label>
+                      </Form.Group>
+                      <Col md="8">
+                        <Form.Select
+                          style={{ height: "38px" ,width:"320px",borderColor: "black",borderRadius:"3px"}}
+                          required
+                        >
+                          <option value="">Select a category</option>
+                          <option value="option1">Basic</option>
+                          <option value="option2">Active</option>
+                          <option value="option3">Executive</option>
+                          {/* Add more options as needed */}
+                        </Form.Select>
+                        <Form.Control.Feedback type="invalid">
+                          Please select a category.
+                        </Form.Control.Feedback>
+                      </Col>
+                    </Row>
+
+                    <Row className="mb-3">
+                      <Form.Group style={{marginTop:'10px'}} as={Col} controlId="validationCustom01">
+                        <Form.Label style={{ color: "black", fontSize: "15px",fontWeight:'bold',marginLeft:"5px" }}>DESCRIPTION</Form.Label>
+                      </Form.Group>
+                      <Col md="8">
+                        <Form.Control
+                          style={{ height: "38px",borderColor: "black" }}
+                          required
+                          type="text"
+                          placeholder="Enter name"
+                        />
+                      </Col>
+                    </Row>
+
+                    <Row className="mb-3">
+                      <Form.Group style={{marginTop:'10px'}} as={Col} controlId="validationCustom05">
+                        <Form.Label style={{ color: "black", fontSize: "15px",fontWeight:'bold',marginLeft:"5px" }}>PRICE</Form.Label>
+                      </Form.Group>
+                      <Col md="8">
+                        <Form.Control
+                          style={{ height: "38px",borderColor: "black" }}
+                          type="text"
+                          placeholder="Enter the Amount"
+                          required
+                        />
+                        {/* <Form.Control.Feedback type="invalid">
+                          Please provide a valid zip.
+                        </Form.Control.Feedback> */}
+                      </Col>
+                    </Row>
+
+                    <Row className="mb-3">
+                      <Col md={{ span: 7, offset: 5 }}>
+                        <Button type="submit" style={{ backgroundColor: "#007bff",marginLeft:"-10px",marginTop:"10px" }}>ADD TEST</Button>&nbsp;                      </Col>
+                    </Row>
+                  </Form>
+                </Card.Body>
+              </Card>
+            </Col>
+            
+          </Row>
+        </Container>
       </div>
     </>
   );

@@ -18,266 +18,126 @@
 */
 /*eslint-disable*/
 import React from "react";
-// react plugin for creating notifications over the dashboard
-import NotificationAlert from "react-notification-alert";
-// reactstrap components
-import {
-  UncontrolledAlert,
-  Alert,
-  Button,
-  Card,
-  CardHeader,
-  CardBody,
-  CardTitle,
-  Row,
-  Col,
-} from "reactstrap";
+import { useState } from "react";
+import { Card, Container, Row, Col, Form, InputGroup, Button } from "react-bootstrap";
 
 function Notifications() {
-  const notificationAlert = React.useRef();
-  const notify = (place) => {
-    var color = Math.floor(Math.random() * 5 + 1);
-    var type;
-    switch (color) {
-      case 1:
-        type = "primary";
-        break;
-      case 2:
-        type = "success";
-        break;
-      case 3:
-        type = "danger";
-        break;
-      case 4:
-        type = "warning";
-        break;
-      case 5:
-        type = "info";
-        break;
-      default:
-        break;
+  const [validated, setValidated] = useState(false);
+
+  const handleSubmit = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
     }
-    var options = {};
-    options = {
-      place: place,
-      message: (
-        <div>
-          <div>
-            Welcome to <b>Paper Dashboard React</b> - a beautiful freebie for
-            every web developer.
-          </div>
-        </div>
-      ),
-      type: type,
-      icon: "nc-icon nc-bell-55",
-      autoDismiss: 7,
-    };
-    notificationAlert.current.notificationAlert(options);
+
+    setValidated(true);
   };
   return (
     <>
-      <div className="content">
-        <NotificationAlert ref={notificationAlert} />
-        <Row>
-          <Col md="12">
-            <Card>
-              <CardHeader>
-                <CardTitle tag="h5">Notifications</CardTitle>
-                <p className="card-category">
-                  Handcrafted by our former colleague{" "}
-                  <a
-                    target="_blank"
-                    href="https://www.instagram.com/manu.nazare/"
-                  >
-                    Nazare Emanuel-Ioan (Manu)
-                  </a>
-                  . Please checkout the{" "}
-                  <a
-                    href="https://github.com/creativetimofficial/react-notification-alert"
-                    target="_blank"
-                  >
-                    full documentation.
-                  </a>
-                </p>
-              </CardHeader>
-              <CardBody>
-                <Row>
-                  <Col md="6">
-                    <Card className="card-plain">
-                      <CardHeader>
-                        <CardTitle tag="h5">Notifications Style</CardTitle>
-                      </CardHeader>
-                      <CardBody>
-                        <Alert color="info">
-                          <span>This is a plain notification</span>
-                        </Alert>
-                        <UncontrolledAlert color="info" fade={false}>
-                          <span>This is a notification with close button.</span>
-                        </UncontrolledAlert>
-                        <UncontrolledAlert
-                          className="alert-with-icon"
-                          color="info"
-                          fade={false}
+      <div className="content" style={{marginTop:"100px",backgroundColor:'white'}}>
+        <Container className="text-left">
+          <Row>
+            <Col>
+              {/* <img src={}/> */}
+            </Col>
+            <Col md={{ span: 7, offset: 0 }}>
+              <Card style={{backgroundColor:'white',boxShadow:'none'}}>
+                <Card.Body className="labs">
+                  <h2 className="text-center mt-4" style={{ fontFamily: "Helvetica",fontWeight:'bold' }}>ADD DOCTOR</h2>
+                  <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                    <Row className="mb-3">
+                      <Form.Group style={{marginTop:'10px'}} as={Col} controlId="validationCustom01">
+                        <Form.Label style={{ color: "black", fontSize: "15px",fontWeight:'bold',marginLeft:"5px"}}>NAME</Form.Label>
+                      </Form.Group>
+                      <Col md="8">
+                        <Form.Control
+                          style={{ height: "38px",borderColor: "black" }}
+                          required
+                          type="text"
+                          placeholder="Enter name"
+                        />
+                      </Col>
+                    </Row>
+
+                    <Row className="mb-3">
+                      <Form.Group style={{marginTop:'10px'}} as={Col} controlId="validationCustom01">
+                        <Form.Label style={{ color: "black", fontSize: "15px",fontWeight:'bold',marginLeft:"5px" }}>QUALIFICATION</Form.Label>
+                      </Form.Group>
+                      <Col md="8">
+                        <Form.Control
+                          style={{ height: "38px",borderColor: "black" }}
+                          required
+                          type="text"
+                          placeholder="Enter name"
+                        />
+                      </Col>
+                    </Row>
+
+                    <Row className="mb-3">
+                      <Form.Group style={{marginTop:'10px'}} as={Col} controlId="validationCustom01">
+                        <Form.Label style={{ color: "black", fontSize: "15px",fontWeight:'bold',marginLeft:"5px" }}>SPECIALIZATION</Form.Label>
+                      </Form.Group>
+                      <Col md="8">
+                        <Form.Control
+                          style={{ height: "38px",borderColor: "black" }}
+                          required
+                          type="text"
+                          placeholder="Enter name"
+                        />
+                      </Col>
+                    </Row>
+
+                    <Row className="mb-3">
+                      <Form.Group style={{ marginTop:'10px' }} as={Col} controlId="validationCustom03">
+                        <Form.Label style={{ color: "black", fontSize: "15px", fontWeight: 'bold', marginLeft: "5px" }}>DEPARTMENT</Form.Label>
+                      </Form.Group>
+                      <Col md="8">
+                        <Form.Select
+                          style={{ height: "38px" ,width:"320px",borderColor: "black",borderRadius:"3px"}}
+                          required
                         >
-                          <span
-                            data-notify="icon"
-                            className="nc-icon nc-bell-55"
-                          />
-                          <span data-notify="message">
-                            This is a notification with close button and icon.
-                          </span>
-                        </UncontrolledAlert>
-                        <UncontrolledAlert
-                          className="alert-with-icon"
-                          color="info"
-                          fade={false}
-                        >
-                          <span
-                            data-notify="icon"
-                            className="nc-icon nc-chart-pie-36"
-                          />
-                          <span data-notify="message">
-                            This is a notification with close button and icon
-                            and have many lines. You can see that the icon and
-                            the close button are always vertically aligned. This
-                            is a beautiful notification. So you don't have to
-                            worry about the style.
-                          </span>
-                        </UncontrolledAlert>
-                      </CardBody>
-                    </Card>
-                  </Col>
-                  <Col md="6">
-                    <Card className="card-plain">
-                      <CardHeader>
-                        <CardTitle tag="h5">Notification states</CardTitle>
-                      </CardHeader>
-                      <CardBody>
-                        <UncontrolledAlert color="primary" fade={false}>
-                          <span>
-                            <b>Primary - </b>
-                            This is a regular notification made with
-                            color="primary"
-                          </span>
-                        </UncontrolledAlert>
-                        <UncontrolledAlert color="info" fade={false}>
-                          <span>
-                            <b>Info - </b>
-                            This is a regular notification made with
-                            color="info"
-                          </span>
-                        </UncontrolledAlert>
-                        <UncontrolledAlert color="success" fade={false}>
-                          <span>
-                            <b>Success - </b>
-                            This is a regular notification made with
-                            color="success"
-                          </span>
-                        </UncontrolledAlert>
-                        <UncontrolledAlert color="warning" fade={false}>
-                          <span>
-                            <b>Warning - </b>
-                            This is a regular notification made with
-                            color="warning"
-                          </span>
-                        </UncontrolledAlert>
-                        <UncontrolledAlert color="danger" fade={false}>
-                          <span>
-                            <b>Danger - </b>
-                            This is a regular notification made with
-                            color="danger"
-                          </span>
-                        </UncontrolledAlert>
-                      </CardBody>
-                    </Card>
-                  </Col>
-                </Row>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
-        <Row>
-          <Col md="12">
-            <Card>
-              <CardBody>
-                <div className="places-buttons">
-                  <Row>
-                    <Col className="ml-auto mr-auto text-center" md="6">
-                      <CardTitle tag="h4">Notifications Places</CardTitle>
-                      <p className="category">Click to view notifications</p>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col className="ml-auto mr-auto" lg="8">
-                      <Row>
-                        <Col md="4">
-                          <Button
-                            block
-                            color="primary"
-                            onClick={() => notify("tl")}
-                          >
-                            Top Left
-                          </Button>
-                        </Col>
-                        <Col md="4">
-                          <Button
-                            block
-                            color="primary"
-                            onClick={() => notify("tc")}
-                          >
-                            Top Center
-                          </Button>
-                        </Col>
-                        <Col md="4">
-                          <Button
-                            block
-                            color="primary"
-                            onClick={() => notify("tr")}
-                          >
-                            Top Right
-                          </Button>
-                        </Col>
-                      </Row>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col className="ml-auto mr-auto" lg="8">
-                      <Row>
-                        <Col md="4">
-                          <Button
-                            block
-                            color="primary"
-                            onClick={() => notify("bl")}
-                          >
-                            Bottom Left
-                          </Button>
-                        </Col>
-                        <Col md="4">
-                          <Button
-                            block
-                            color="primary"
-                            onClick={() => notify("bc")}
-                          >
-                            Bottom Center
-                          </Button>
-                        </Col>
-                        <Col md="4">
-                          <Button
-                            block
-                            color="primary"
-                            onClick={() => notify("br")}
-                          >
-                            Bottom Right
-                          </Button>
-                        </Col>
-                      </Row>
-                    </Col>
-                  </Row>
-                </div>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
+                          <option value="">Select a category</option>
+                          <option value="option1">Endocrinology</option>
+                          <option value="option2">Hematology</option>
+                          <option value="option3">Immunology</option>
+                          <option value="option3">Pathology</option>
+                          <option value="option3">Serology</option>
+                          <option value="option3">Microbiology</option>
+                          <option value="option3">Urinalysis</option>
+                          <option value="option3">Cardiology</option>
+                        </Form.Select>
+                        <Form.Control.Feedback type="invalid">
+                          Please select a category.
+                        </Form.Control.Feedback>
+                      </Col>
+                    </Row>
+
+                    <Row className="mb-3">
+                      <Form.Group style={{marginTop:'10px'}} as={Col} controlId="validationCustom01">
+                        <Form.Label style={{ color: "black", fontSize: "15px",fontWeight:'bold',marginLeft:"5px" }}>LAB NAME</Form.Label>
+                      </Form.Group>
+                      <Col md="8">
+                        <Form.Control
+                          style={{ height: "38px",borderColor: "black" }}
+                          required
+                          type="text"
+                          placeholder="Enter name"
+                        />
+                      </Col>
+                    </Row>
+
+                    <Row className="mb-3">
+                      <Col md={{ span: 7, offset: 5 }}>
+                        <Button type="submit" style={{ backgroundColor: "#007bff",marginLeft:"-10px",marginTop:"10px" }}>ADD DOCTOR</Button>&nbsp;                      </Col>
+                    </Row>
+                  </Form>
+                </Card.Body>
+              </Card>
+            </Col>
+            
+          </Row>
+        </Container>
       </div>
     </>
   );
