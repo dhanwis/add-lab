@@ -19,8 +19,8 @@
 import React from "react";
 import { useState } from "react";
 import i3 from '../assets/img/blood.gif'
-// import { Card, Container, Row, Col, Form, Button } from "react-bootstrap";
-import { Card, Container,Row,Col,Form,Button } from "reactstrap";
+import { Card, Container, Row, Col, Form, Button } from "react-bootstrap";
+// import { Card, Container,Row,Col,Form,Button } from "reactstrap";
 
 
 function Icons() {
@@ -125,7 +125,7 @@ function Icons() {
                       </Col>
                     </Row>
 
-                     <Form.Group as={Row} className="mb-3" style={{ marginTop: '10px' }}>
+                     {/* <Form.Group as={Row} className="mb-3" style={{ marginTop: '10px' }}>
                       <Form.Label column sm={2} style={{ color: "black", fontSize: "15px", fontWeight: 'bold', marginLeft: "5px" }}>
                         UPLOAD IMAGE
                       </Form.Label>
@@ -136,16 +136,22 @@ function Icons() {
                           style={{ height: "38px", borderColor: "black" }}
                         />
                       </Col>
-                    </Form.Group>
+                    </Form.Group> */}
 
-                    <Form.Group className="mb-3" controlId="formBasicImage">
-                              <Form.Label>Upload Image</Form.Label>
-                              <Form.Control
-                                type="file"
-                                name="image"
-                              
-                              />
-                    </Form.Group>
+                    <Row className="mb-3">
+                      <Form.Group style={{marginTop:'10px'}} as={Col} controlId="formBasicImage">
+                        <Form.Label style={{ color: "black", fontSize: "15px",fontWeight:'bold',marginLeft:"5px" }}>UPLOAD IMAGE</Form.Label>
+                      </Form.Group>
+                      <Col md="8">
+                        <Form.Control
+                          style={{ height: "38px",borderColor: "black" }}
+                          type="file"
+                          name="image"
+                        
+                        />
+                      </Col>
+                    </Row>
+                    
 
 
                     <Row className="mb-3">
