@@ -34,6 +34,11 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button
 } from "reactstrap";
 import { FaUser } from 'react-icons/fa';
 // core components
@@ -57,7 +62,16 @@ function Dashboard() {
   };
 
   const handleLogout = () => {
-    navigate('/logout');
+    setModalOpen(true);
+  };
+
+  const confirmLogout = () => {
+    setModalOpen(false);
+    // Perform logout actions here
+  };
+
+  const cancelLogout = () => {
+    setModalOpen(false);
   };
   return (
     <>
@@ -81,7 +95,7 @@ function Dashboard() {
           </DropdownToggle>
           <DropdownMenu right>
             <DropdownItem onClick={handleLogin}>Login</DropdownItem>
-            <DropdownItem onClick={handleLogout}>Logout</DropdownItem>
+            <DropdownItem onClick={handleLogout}>Logout</DropdownItem>          
           </DropdownMenu>
         </Dropdown>
         </div>
