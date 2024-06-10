@@ -1,30 +1,16 @@
-/*!
-
-=========================================================
-* Paper Dashboard React - v1.3.2
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-* Licensed under MIT (https://github.com/creativetimofficial/paper-dashboard-react/blob/main/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 import { useState } from "react";
-import i3 from '../assets/img/blood.gif'
+import { useNavigate } from 'react-router-dom';
 import { Card, Container, Row, Col, Form, Button } from "react-bootstrap";
-// import { Card, Container,Row,Col,Form,Button } from "reactstrap";
-
+import backgroundImage from './lbmin6.png'; 
 
 function Icons() {
   const [validated, setValidated] = useState(false);
+  const navigate = useNavigate(); 
+
+  function handleClicks() {
+    navigate('/package-list'); 
+  }
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
@@ -35,138 +21,77 @@ function Icons() {
 
     setValidated(true);
   };
+
   return (
-    <>
-      <div className="content" style={{marginTop:"100px",backgroundColor:'white'}}>
-        <Container className="text-left">
-          <Row>
-            <Col>
-              <img src={i3}/>
-            </Col>
-            <Col md={{ span: 7, offset: 0 }}>
-              <Card style={{backgroundColor:'white',boxShadow:'none'}}>
+    <div className="content" style={{ backgroundImage: `url(${backgroundImage})`, height: "100vh", backgroundSize: "cover", backgroundPosition: "center",opacity:'0.9' }}>
+      <Container>
+        <Row className="justify-content-center align-items-center" style={{ height: "100%" }}>
+          <Col md={6}>
+            <div className="form-container" style={{ marginTop: "100px" }}>
+              <Card className="form-card" style={{ border: "2px solid white", backgroundColor:"white",opacity:"0.9" }}>
                 <Card.Body className="labs">
-                  <h2 className="text-center mt-4" style={{ fontFamily: "Helvetica",fontWeight:'bold' }}>ADD PACKAGE</h2>
-                  <Form noValidate validated={validated} onSubmit={handleSubmit}>
-                    <Row className="mb-3">
-                      <Form.Group style={{marginTop:'10px'}} as={Col} controlId="validationCustom01">
-                        <Form.Label style={{ color: "black", fontSize: "15px",fontWeight:'bold',marginLeft:"5px"}}>PACKAGE NAME</Form.Label>
-                      </Form.Group>
-                      <Col md="8">
-                        <Form.Control
-                          style={{ height: "38px",borderColor: "black" }}
+                  <h2 className="text-center mt-4 form-title" style={{color:'black'}}>ADD PACKAGE</h2>
+                  <Form noValidate validated={validated} onSubmit={handleSubmit} style={{ height: "310px" }}>
+                    <Form.Group as={Row} controlId="packageName" style={{ marginBottom: "20px" }}>
+                      <Form.Label column sm="3" style={{color:'black',fontSize:'14px',fontWeight:"bold", whiteSpace: "nowrap", textAlign: "right", paddingRight: "15px"}}>Package Name :</Form.Label>
+                      <Col sm="8">
+                        <Form.Control style={{width:"100%", borderRadius: '16px',border:"1px solid black"}}
+                          className="form-control-styled"
                           required
                           type="text"
-                          placeholder="Enter name"
+                          placeholder="Enter package name"
                         />
                       </Col>
-                    </Row>
+                    </Form.Group>
 
-                    <Row className="mb-3">
-                      <Form.Group style={{marginTop:'10px'}} as={Col} controlId="validationCustom01">
-                        <Form.Label style={{ color: "black", fontSize: "15px",fontWeight:'bold',marginLeft:"5px" }}>LAB NAME</Form.Label>
-                      </Form.Group>
-                      <Col md="8">
-                        <Form.Control
-                          style={{ height: "38px",borderColor: "black" }}
-                          required
+                    <Form.Group as={Row} controlId="testsIncluded" style={{ marginBottom: "20px" }}>
+                      <Form.Label column sm="3" style={{color:'black',fontSize:'14px',fontWeight:"bold", whiteSpace: "nowrap", textAlign: "right", paddingRight: "15px"}}>Tests included :</Form.Label>
+                      <Col sm="8">
+                        <Form.Control style={{width:"100%", borderRadius: '16px',border:"1px solid black"}}
+                          className="form-control-styled"
                           type="text"
-                          placeholder="Enter name"
+                          placeholder="Enter tests included"
+                          required
                         />
                       </Col>
-                    </Row>
+                    </Form.Group>
 
-                    <Row className="mb-3">
-                      <Form.Group style={{ marginTop:'10px' }} as={Col} controlId="validationCustom03">
-                        <Form.Label style={{ color: "black", fontSize: "15px", fontWeight: 'bold', marginLeft: "5px" }}>CATEGORY</Form.Label>
-                      </Form.Group>
-                      <Col md="8">
-                        <Form.Select
-                          style={{ height: "38px" ,width:"320px",borderColor: "black",borderRadius:"3px"}}
-                          required
-                        >
-                          <option value="">Select a category</option>
-                          <option value="option1">Basic</option>
-                          <option value="option2">Active</option>
-                          <option value="option3">Executive</option>
-                          {/* Add more options as needed */}
-                        </Form.Select>
-                        {/* <Form.Control.Feedback type="invalid">
-                          Please select a category.
-                        </Form.Control.Feedback> */}
-                      </Col>
-                    </Row>
-
-                    <Row className="mb-3">
-                      <Form.Group style={{marginTop:'10px'}} as={Col} controlId="validationCustom05">
-                        <Form.Label style={{ color: "black", fontSize: "15px",fontWeight:'bold',marginLeft:"5px" }}>TESTS INCLUDED</Form.Label>
-                      </Form.Group>
-                      <Col md="8">
-                        <Form.Control
-                          style={{ height: "38px",borderColor: "black" }}
+                    <Form.Group as={Row} controlId="price" style={{ marginBottom: "20px" }}>
+                      <Form.Label column sm="3" style={{color:'black',fontSize:'14px',fontWeight:"bold", whiteSpace: "nowrap", textAlign: "right", paddingRight: "15px"}}>Package Price :</Form.Label>
+                      <Col sm="8">
+                        <Form.Control style={{width:"100%", borderRadius: '16px',border:"1px solid black"}}
+                          className="form-control-styled"
                           type="text"
-                          placeholder="Enter the number of tests included"
+                          placeholder="Enter price"
                           required
                         />
                       </Col>
-                    </Row>
+                    </Form.Group>
 
-                    <Row className="mb-3">
-                      <Form.Group style={{marginTop:'10px'}} as={Col} controlId="validationCustom05">
-                        <Form.Label style={{ color: "black", fontSize: "15px",fontWeight:'bold',marginLeft:"5px" }}>PRICE</Form.Label>
-                      </Form.Group>
-                      <Col md="8">
-                        <Form.Control
-                          style={{ height: "38px",borderColor: "black" }}
-                          type="text"
-                          placeholder="Enter the Amount"
-                          required
-                        />
-                      </Col>
-                    </Row>
-
-                     {/* <Form.Group as={Row} className="mb-3" style={{ marginTop: '10px' }}>
-                      <Form.Label column sm={2} style={{ color: "black", fontSize: "15px", fontWeight: 'bold', marginLeft: "5px" }}>
-                        UPLOAD IMAGE
-                      </Form.Label>
-                      <Col md={8}>
-                        <Form.File 
-                          id="exampleFormControlFile1"
-                          label="Choose an image"
-                          style={{ height: "38px", borderColor: "black" }}
-                        />
-                      </Col>
-                    </Form.Group> */}
-
-                    <Row className="mb-3">
-                      <Form.Group style={{marginTop:'10px'}} as={Col} controlId="formBasicImage">
-                        <Form.Label style={{ color: "black", fontSize: "15px",fontWeight:'bold',marginLeft:"5px" }}>UPLOAD IMAGE</Form.Label>
-                      </Form.Group>
-                      <Col md="8">
-                        <Form.Control
-                          style={{ height: "38px",borderColor: "black" }}
+                    <Form.Group as={Row} controlId="image" style={{ marginBottom: "20px" }}>
+                      <Form.Label column sm="3" style={{color:'black',fontSize:'14px',fontWeight:"bold", whiteSpace: "nowrap", textAlign: "right", paddingRight: "15px"}}>Upload Image :</Form.Label>
+                      <Col sm="8">
+                        <Form.Control style={{width:"100%", borderRadius: '16px',border:"1px solid black"}}
+                          className="form-control-styled"
                           type="file"
                           name="image"
-                        
                         />
                       </Col>
-                    </Row>
-                    
+                    </Form.Group>
 
-
-                    <Row className="mb-3">
-                      <Col md={{ span: 7, offset: 5 }}>
-                        <Button type="submit" style={{ backgroundColor: "#007bff",marginLeft:"-10px",marginTop:"10px" }}>ADD PACKAGE</Button>&nbsp;                      </Col>
+                    <Row>
+                      <Col className="text-center">
+                        <Button className="bn" type="submit" style={{backgroundColor:"green",marginTop:"8px",padding:"10px 55px",marginLeft:"21px",borderRadius:'3px',color:"white"}}>ADD</Button>
+                      </Col>
                     </Row>
                   </Form>
                 </Card.Body>
               </Card>
-            </Col>
-            
-          </Row>
-        </Container>
-      </div>
-    </>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   );
 }
 

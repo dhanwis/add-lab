@@ -19,69 +19,105 @@
 import Dashboard from "views/Dashboard.js";
 import Notifications from "views/Notifications.js";
 import Icons from "views/Icons.js";
-import Typography from "views/Typography.js";
-import TableList from "views/Tables.js";
-import Maps from "views/Map.js";
+// import Typography from "views/Typography.js";
+import Tables from "views/Tables.js";
 import UserPage from "views/User.js";
-import UpgradeToPro from "views/Upgrade.js";
+import DoctorList from "./views/Doctorl";
+import Booking from "./views/Booking";
+import Report from "./views/Report";
+import Feedback from "./views/Feedback";
+// import UpgradeToPro from "views/Upgrade.js";
 
 var routes = [
   {
     path: "/dashboard",
     name: "Dashboard",
-    icon: "nc-icon nc-bank",
+    // icon: "nc-icon nc-bank",
     component: <Dashboard />,
     layout: "/admin",
   },
+  // {
+  //   path: "/packages",
+  //   name: "Add Packages",
+  //   icon: "nc-icon nc-diamond",
+  //   component: <Icons />,
+  //   layout: "/admin",
+  // },
+  // {
+  //   path: "/test",
+  //   name: "Add Test",
+  //   icon: "nc-icon nc-pin-3",
+  //   component: <Map />,
+  //   layout: "/admin",
+  // },
+  // {
+  //   path: "/doctor",
+  //   name: "Add Doctor",
+  //   icon: "nc-icon nc-bell-55",
+  //   component: <Notifications />,
+  //   layout: "/admin",
+  // },
   {
-    path: "/icons",
-    name: "Icons",
-    icon: "nc-icon nc-diamond",
-    component: <Icons />,
-    layout: "/admin",
-  },
-  {
-    path: "/maps",
-    name: "Maps",
-    icon: "nc-icon nc-pin-3",
-    component: <Maps />,
-    layout: "/admin",
-  },
-  {
-    path: "/notifications",
-    name: "Notifications",
-    icon: "nc-icon nc-bell-55",
-    component: <Notifications />,
-    layout: "/admin",
-  },
-  {
-    path: "/user-page",
-    name: "User Profile",
-    icon: "nc-icon nc-single-02",
+    path: "/package-list",
+    name: "Packages",
+    // icon: "nc-icon nc-single-02",
     component: <UserPage />,
     layout: "/admin",
   },
   {
-    path: "/tables",
-    name: "Table List",
-    icon: "nc-icon nc-tile-56",
-    component: <TableList />,
+    path: "/abc",
+    name: "Tests",
+    // icon: "nc-icon nc-tile-56",
+    component: <Tables />,
     layout: "/admin",
   },
   {
-    path: "/typography",
-    name: "Typography",
-    icon: "nc-icon nc-caps-small",
-    component: <Typography />,
+    path: "/xyz",
+    name: "Doctors",
+    // icon: "nc-icon nc-caps-small",
+    component: <DoctorList />,
+    layout: "/admin",
+  },
+  // {
+  //   pro: true,
+  //   path: "/upgrade",
+  //   name: "Upgrade to PRO",
+  //   icon: "nc-icon nc-spaceship",
+  //   component: <UpgradeToPro />,
+  //   layout: "/admin",
+  // },
+  {
+    path: "/bookings",
+    name: "Bookings",
+    // icon: "nc-icon nc-caps-small",
+    component: <Booking />,
     layout: "/admin",
   },
   {
-    pro: true,
-    path: "/upgrade",
-    name: "Upgrade to PRO",
-    icon: "nc-icon nc-spaceship",
-    component: <UpgradeToPro />,
+    path: "/report",
+    name: "Test Report",
+    // icon: "nc-icon nc-caps-small",
+    component: <Report />,
+    layout: "/admin",
+  },
+  {
+    path: "/feedback",
+    name: "Feedbacks",
+    // icon: "nc-icon nc-caps-small",
+    component: <Feedback />,
     layout: "/admin",
   },
 ];
+
+export const newPageRoute = {
+  path: "/doctor", // Specify the path for the new page
+  component: <Notifications />, 
+  layout: "/admin",// Specify the component for the new page
+};
+export const newPageRoutes = {
+  path: "/packages", // Specify the path for the new page
+  component: <Icons />, 
+  layout: "/admin",// Specify the component for the new page
+};
+
 export default routes;

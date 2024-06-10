@@ -18,7 +18,7 @@
 */
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.css";
 import "assets/scss/paper-dashboard.scss?v=1.3.0";
@@ -26,6 +26,14 @@ import "assets/demo/demo.css";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
 
 import AdminLayout from "layouts/Admin.js";
+import Notifications from "views/Notifications";
+import Doctorl from "views/Doctorl";
+import Tables from "views/Tables";
+import Map from "views/Map";
+import User from "views/User";
+import Icons from "views/Icons";
+
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -33,7 +41,13 @@ root.render(
   <BrowserRouter>
     <Routes>
       <Route path="/admin/*" element={<AdminLayout />} />
-      <Route path="/" element={<Navigate to="/admin/dashboard" replace />} />
+      <Route path="/doctor" element={<Notifications />} />
+      <Route path="/xyz" element={<Doctorl />} />
+      <Route path="/abc" element={<Tables/>} />
+      <Route path="/test" element={<Map />} />
+      <Route path="/package-list" element={<User />} />
+      <Route path="/packages" element={<Icons />} />
+      {/* <Route path="/" element={<Navigate to="/admin/dashboard" replace />} /> */}
     </Routes>
   </BrowserRouter>
 );

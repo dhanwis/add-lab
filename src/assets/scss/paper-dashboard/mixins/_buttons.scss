@@ -105,7 +105,7 @@
         .show > &.dropdown-toggle,
         .show > &.dropdown-toggle:focus,
         .show > &.dropdown-toggle:hover {
-            background-color: $white-color !important;
+            background-color: none !important;
             color: $primary-states-color !important;
             box-shadow: none !important;
         }
@@ -121,7 +121,7 @@
         }
 
     } @else {
-        color: $white-color;
+        color: green ;
     }
 
     &.btn-simple{
