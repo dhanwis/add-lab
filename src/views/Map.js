@@ -17,205 +17,97 @@
 
 */
 import React from "react";
-// reactstrap components
-import { Card, CardHeader, CardBody, Row, Col } from "reactstrap";
-
-const MapWrapper = () => {
-  const mapRef = React.useRef(null);
-  React.useEffect(() => {
-    let google = window.google;
-    let map = mapRef.current;
-    let lat = "40.748817";
-    let lng = "-73.985428";
-    const myLatlng = new google.maps.LatLng(lat, lng);
-    const mapOptions = {
-      zoom: 13,
-      center: myLatlng,
-      scrollwheel: false,
-      zoomControl: true,
-      styles: [
-        {
-          featureType: "water",
-          stylers: [
-            {
-              saturation: 43,
-            },
-            {
-              lightness: -11,
-            },
-            {
-              hue: "#0088ff",
-            },
-          ],
-        },
-        {
-          featureType: "road",
-          elementType: "geometry.fill",
-          stylers: [
-            {
-              hue: "#ff0000",
-            },
-            {
-              saturation: -100,
-            },
-            {
-              lightness: 99,
-            },
-          ],
-        },
-        {
-          featureType: "road",
-          elementType: "geometry.stroke",
-          stylers: [
-            {
-              color: "#808080",
-            },
-            {
-              lightness: 54,
-            },
-          ],
-        },
-        {
-          featureType: "landscape.man_made",
-          elementType: "geometry.fill",
-          stylers: [
-            {
-              color: "#ece2d9",
-            },
-          ],
-        },
-        {
-          featureType: "poi.park",
-          elementType: "geometry.fill",
-          stylers: [
-            {
-              color: "#ccdca1",
-            },
-          ],
-        },
-        {
-          featureType: "road",
-          elementType: "labels.text.fill",
-          stylers: [
-            {
-              color: "#767676",
-            },
-          ],
-        },
-        {
-          featureType: "road",
-          elementType: "labels.text.stroke",
-          stylers: [
-            {
-              color: "#ffffff",
-            },
-          ],
-        },
-        {
-          featureType: "poi",
-          stylers: [
-            {
-              visibility: "off",
-            },
-          ],
-        },
-        {
-          featureType: "landscape.natural",
-          elementType: "geometry.fill",
-          stylers: [
-            {
-              visibility: "on",
-            },
-            {
-              color: "#b8cb93",
-            },
-          ],
-        },
-        {
-          featureType: "poi.park",
-          stylers: [
-            {
-              visibility: "on",
-            },
-          ],
-        },
-        {
-          featureType: "poi.sports_complex",
-          stylers: [
-            {
-              visibility: "on",
-            },
-          ],
-        },
-        {
-          featureType: "poi.medical",
-          stylers: [
-            {
-              visibility: "on",
-            },
-          ],
-        },
-        {
-          featureType: "poi.business",
-          stylers: [
-            {
-              visibility: "simplified",
-            },
-          ],
-        },
-      ],
-    };
-
-    map = new google.maps.Map(map, mapOptions);
-
-    const marker = new google.maps.Marker({
-      position: myLatlng,
-      map: map,
-      animation: google.maps.Animation.DROP,
-      title: "Paper Dashboard React!",
-    });
-
-    const contentString =
-      '<div class="info-window-content"><h2>Paper Dashboard React</h2>' +
-      "<p>A free Admin for React, Reactstrap, and React Hooks.</p></div>";
-
-    const infowindow = new google.maps.InfoWindow({
-      content: contentString,
-    });
-
-    google.maps.event.addListener(marker, "click", function () {
-      infowindow.open(map, marker);
-    });
-  });
-  return (
-    <>
-      <div style={{ height: `100%` }} ref={mapRef}></div>
-    </>
-  );
-};
+import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import { Card, Container, Row, Col, Form, Button } from "react-bootstrap";
+import backgroundImage from './lbmin6.png'; 
 
 function Map() {
+  const [validated, setValidated] = useState(false);
+  const navigate = useNavigate(); 
+
+  const handleClicks = () => {
+    navigate('/abc'); 
+  };
+
+  const handleSubmit = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    setValidated(true);
+  };
+
   return (
-    <>
-      <div className="content">
-        <Row>
-          <Col md="12">
-            <Card>
-              <CardHeader>Google Maps</CardHeader>
-              <CardBody>
-                <div
-                  id="map"
-                  className="map"
-                  style={{ position: "relative", overflow: "hidden" }}
-                >
-                  <MapWrapper />
-                </div>
-              </CardBody>
-            </Card>
+    <div className="content" style={{ backgroundImage: `url(${backgroundImage})`, height: "100vh", backgroundSize: "cover", backgroundPosition: "center", filter: "brightness(100%)", opacity: '0.9' }}>
+      <Container>
+        <Row className="justify-content-center align-items-center" style={{ height: "100%" }}>
+          <Col md={6}>
+            <div className="form-container" style={{ marginTop: "100px" }}>
+              <Card className="form-card" style={{  backgroundColor: "white", opacity: "0.9" }}>
+                <Card.Body className="labs">
+                  <h2 className="text-center mt-4 form-title" style={{ color: 'black', fontWeight: "bold" }}>ADD TEST</h2>
+                  <Form noValidate validated={validated} onSubmit={handleSubmit} style={{ height: "310px" }}>
+                    <Form.Group as={Row} controlId="testName" style={{ marginBottom: "20px" }}>
+                      <Form.Label column sm="3" className="text-right form-label" style={{color:"black",fontSize:'15px',fontWeight:"bold"}}>Test Name :</Form.Label>
+                      <Col sm="8">
+                        <Form.Control className="form-control-styled" style={{ borderRadius: '16px',border:"1px solid black" }}
+                          required
+                          type="text"
+                          placeholder="Enter test name"
+                        />
+                      </Col>
+                    </Form.Group>
+
+                    <Form.Group as={Row} controlId="packageName" style={{ marginBottom: "20px" }}>
+                      <Form.Label column sm="3" className="text-right form-label" style={{color:"black",fontSize:'15px',fontWeight:"bold"}}>Package :</Form.Label>
+                      <Col sm="8">
+                        <Form.Control className="form-control-styled" style={{ borderRadius: '16px',border:"1px solid black" }}
+                          required
+                          type="text"
+                          placeholder="Enter package name"
+                        />
+                      </Col>
+                    </Form.Group>
+
+                    <Form.Group as={Row} controlId="description" style={{ marginBottom: "20px" }}>
+                      <Form.Label column sm="3" className="text-right form-label" style={{color:"black",fontSize:'15px',fontWeight:"bold"}}>Description :</Form.Label>
+                      <Col sm="8">
+                        <Form.Control className="form-control-styled" style={{ borderRadius: '16px',border:"1px solid black" }}
+                          required
+                          type="text"
+                          placeholder="Enter description"
+                        />
+                      </Col>
+                    </Form.Group>
+
+                    <Form.Group as={Row} controlId="price" style={{ marginBottom: "20px" }}>
+                      <Form.Label column sm="3" className="text-right form-label" style={{color:"black",fontSize:'15px',fontWeight:"bold"}}>Test Price :</Form.Label>
+                      <Col sm="8">
+                        <Form.Control className="form-control-styled" style={{ borderRadius: '16px',border:"1px solid black" }}
+                          required
+                          type="text"
+                          placeholder="Enter price"
+                        />
+                      </Col>
+                    </Form.Group>
+
+                    <Row>
+                      <Col className="text-center">
+                        <Button type="button" onClick={handleClicks} style={{ backgroundColor: "#007bff", marginTop: "8px", padding: "10px 55px", borderRadius: '3px',color:"white" }}>BACK</Button>
+                        <Button type="submit" style={{ backgroundColor: "green", marginTop: "8px", padding: "10px 55px", marginLeft: "12px", borderRadius: '3px',color:"white" }}>ADD TEST</Button>
+                      </Col>
+                    </Row>
+                  </Form>
+                </Card.Body>
+              </Card>
+            </div>
           </Col>
         </Row>
-      </div>
-    </>
+      </Container>
+    </div>
   );
 }
 
