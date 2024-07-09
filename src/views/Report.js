@@ -108,7 +108,7 @@ export default function Report() {
                       style={{ display: 'none' }}
                     />
                     <button style={{
-                      padding: '8px 20px',
+                      padding: '5px 15px',
                       fontSize: '16px',
                       borderRadius: '5px',
                       border: 'none',

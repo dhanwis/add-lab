@@ -441,10 +441,10 @@ function User() {
         )}
       </Modal.Body>
       <Modal.Footer style={{ justifyContent: "center" }}>
-        <Button variant="secondary" onClick={handleCloseModal}>
+        <Button variant="secondary" onClick={handleCloseModal} style={{color:"white"}}>
           Close
         </Button>
-        <Button variant="success" style={{ marginLeft: "25px" }}>
+        <Button variant="success" style={{ marginLeft: "25px",color:"white" }}>
           Edit
         </Button>
       </Modal.Footer>

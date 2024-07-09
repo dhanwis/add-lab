@@ -32,6 +32,7 @@ import Tables from "views/Tables";
 import Map from "views/Map";
 import User from "views/User";
 import Icons from "views/Icons";
+import Login from "views/Login";
 
 
 
@@ -47,6 +48,7 @@ root.render(
       <Route path="/test" element={<Map />} />
       <Route path="/package-list" element={<User />} />
       <Route path="/packages" element={<Icons />} />
+      <Route path="/login" element={<Login />} />
       {/* <Route path="/" element={<Navigate to="/admin/dashboard" replace />} /> */}
     </Routes>
   </BrowserRouter>

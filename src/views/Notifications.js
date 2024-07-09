@@ -1,16 +1,16 @@
 import React from "react";
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { Card, Container, Row, Col, Form, Button } from "react-bootstrap";
 import backgroundImage from './lbmin6.png'; 
 
 function Notifications() {
   const [validated, setValidated] = useState(false);
-  const navigate = useNavigate(); 
+  // const navigate = useNavigate(); 
 
-  const handleClicks = () => {
-    navigate('/xyz'); 
-  };
+  // const handleClicks = () => {
+  //   navigate('/xyz'); 
+  // };
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
@@ -93,7 +93,7 @@ function Notifications() {
 
                     <Row>
                       <Col className="text-center">
-                        <Button type="submit" onClick={handleClicks} style={{ backgroundColor: "#007bff", marginTop: "8px", padding: "10px 55px", marginLeft: "21px", borderRadius: '3px',color:"white" }}>BACK</Button>
+                        {/* <Button type="submit" onClick={handleClicks} style={{ backgroundColor: "#007bff", marginTop: "8px", padding: "10px 55px", marginLeft: "21px", borderRadius: '3px',color:"white" }}>BACK</Button> */}
                         <Button type="submit" style={{ backgroundColor: "green", marginTop: "8px", padding: "10px 55px", marginLeft: "12px", borderRadius: '3px',color:"white" }}>ADD</Button>
                       </Col>
                     </Row>

@@ -26,6 +26,7 @@ import DoctorList from "./views/Doctorl";
 import Booking from "./views/Booking";
 import Report from "./views/Report";
 import Feedback from "./views/Feedback";
+import Login from "views/Login";
 // import UpgradeToPro from "views/Upgrade.js";
 
 var routes = [
@@ -117,6 +118,11 @@ export const newPageRoute = {
 export const newPageRoutes = {
   path: "/packages", // Specify the path for the new page
   component: <Icons />, 
+  layout: "/admin",// Specify the component for the new page
+};
+export const newPageRoutess = {
+  path: "/login", // Specify the path for the new page
+  component: <Login />, 
   layout: "/admin",// Specify the component for the new page
 };
 
